@@ -174,7 +174,7 @@ const GooglePlacesAutocomplete = React.createClass({
    * @public
    */
   triggerFocus() {
-    if (this.refs.textInput) this.refs.textInput.focus();
+    if (this.refs.textInput) this.refs.textInput.setFocus();
   },
 
   /**
@@ -182,7 +182,7 @@ const GooglePlacesAutocomplete = React.createClass({
    * @public
    */
   triggerBlur() {
-    if (this.refs.textInput) this.refs.textInput.blur();
+    if (this.refs.textInput) this.refs.textInput.unsetFocus();
   },
 
   getCurrentLocation() {
@@ -255,6 +255,7 @@ const GooglePlacesAutocomplete = React.createClass({
               this.setState({
                 text: rowData.description,
               });
+              this.refs.textInput.setText(rowData.description, true);
 
               delete rowData.isLoading;
               this.props.onPress(rowData, details);
@@ -283,6 +284,7 @@ const GooglePlacesAutocomplete = React.createClass({
       this.setState({
         text: rowData.description,
       });
+      this.refs.textInput.setText(text, true);
       this.triggerBlur(); // hide keyboard but not the results
 
       delete rowData.isLoading;
@@ -293,6 +295,7 @@ const GooglePlacesAutocomplete = React.createClass({
       this.setState({
         text: rowData.description,
       });
+      this.refs.textInput.setText(text, true);
 
       this._onBlur();
 
@@ -449,6 +452,7 @@ const GooglePlacesAutocomplete = React.createClass({
       text: text,
       listViewDisplayed: true,
     });
+    this.refs.textInput.setText(text, true);
   },
 
   _getRowLoader() {
@@ -508,8 +512,8 @@ const GooglePlacesAutocomplete = React.createClass({
   },
 
   _onBlur() {
-    this.triggerBlur();
     this.setState({listViewDisplayed: false});
+    this.triggerBlur();
   },
 
   _onFocus() {
