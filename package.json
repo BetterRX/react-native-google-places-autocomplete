@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/FaridSafi/react-native-google-places-autocomplete#readme",
   "dependencies": {
-    "qs": "^5.2.0"
+    "qs": "^5.2.0",
+    "react-native-floating-label-text-input": "https://github.com/betterrx/react-native-floating-label-text-input#feature/prevent-infinite-onchange"
   },
   "devDependencies": {
     "eslint": "^1.9.0",
